@@ -1,27 +1,29 @@
-// import fs from 'fs'
+import fs from 'fs'
 import http from 'http'
+import path from 'path'
 
 const server = http.createServer((req, res) => {
-    res.write("request url:" + req.url)
-    res.write("\n\n")
-    res.write("request method:" + req.method)
-    res.write("\n\n")
+    const videoPath = path.join('videos', 'Blade Runner 2049 ｜ Doja Cat - So High ｜ HDR10+ [bVUSYNg8qcY].mp4');
+    console.log('fetching ' + videoPath)
 
-    res.write("request complete?:" + req.complete)
-    res.write("\n\n")
-
-    res.write("request trailers:" + req.trailers)
-    res.write("\n\n")
-
-    res.write("request headers:")
-    res.write("\n")
-
-
-    for (const [key, value] of Object.entries(req.headers)) {
-        res.write("\n" + key + ":" + value)
-        res.write("\n")
+    if (!fs.existsSync(videoPath)) {
+        res.writeHead(404)
+        res.end('Video not found')
+        return
     }
-    res.write("\n\n")
+    res.writeHead(206, { 'Content-Type': 'video/mp4' })
+
+    const stream = fs.createReadStream(videoPath)
+    stream.pipe(res)
+
+    stream.on('error', (err) => {
+        console.error('Error streaming video:', err)
+        res.end(err)
+    })
+
+
+    res.write(fs.createReadStream('videos/Blade Runner 2049 ｜ Doja Cat - So High ｜ HDR10+ [bVUSYNg8qcY].mp4'))
+
 
     res.end()
 })
