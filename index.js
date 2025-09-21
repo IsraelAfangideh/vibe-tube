@@ -20,12 +20,6 @@ const server = http.createServer((req, res) => {
         console.error('Error streaming video:', err)
         res.end(err)
     })
-
-
-    res.write(fs.createReadStream('videos/Blade Runner 2049 ｜ Doja Cat - So High ｜ HDR10+ [bVUSYNg8qcY].mp4'))
-
-
-    res.end()
 })
 
 server.listen(3000, () => console.log('Server running on port 3000'))
