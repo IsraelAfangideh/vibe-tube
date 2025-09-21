@@ -1,0 +1,20 @@
+{
+  "name": "vibe-tube",
+  "version": "1.0.0",
+  "description": "AI Video streaming generation and streaming platform, like youtube but for AI generated videos. ",
+  "homepage": "https://github.com/IsraelAfangideh/vibe-tube#readme",
+  "bugs": {
+    "url": "https://github.com/IsraelAfangideh/vibe-tube/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsraelAfangideh/vibe-tube.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  }
+}
